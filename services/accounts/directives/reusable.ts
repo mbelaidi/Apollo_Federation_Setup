@@ -1,4 +1,6 @@
 import jwt from "jsonwebtoken";
+import { JWTKey } from "../config";
+// Apollo
 import { AuthenticationError } from "apollo-server-express";
 
 // Databases
@@ -15,7 +17,7 @@ export const checkAuthentication = async ({
     // @ts-ignore
     const { user, isValid, err } = await jwt.verify(
       token,
-      "secretKey",
+      JWTKey,
       async (err: any, decoded: any) => {
         if (decoded) {
           const Find_user_Db = await User.findOne({
@@ -53,7 +55,7 @@ export const checkAuthentication = async ({
 };
 export const GenerateAccessToken = async ({ user, key }: AccessTokenTypes) => {
   if (user) {
-    return await jwt.sign({ id: user._id }, "secretKey", {
+    return await jwt.sign({ id: user._id }, JWTKey, {
       expiresIn: "3d",
     });
   } else {

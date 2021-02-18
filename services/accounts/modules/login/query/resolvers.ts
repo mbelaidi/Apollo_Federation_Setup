@@ -1,4 +1,3 @@
-import randomstring from "randomstring";
 // Apollo Server
 import { IResolvers } from "apollo-server-express";
 
@@ -25,10 +24,8 @@ export const resolvers: IResolvers = {
         if (isInvalid) {
           return { isInvalid, errors };
         } else {
-          const key = randomstring.generate();
           const token = await GenerateAccessToken({
             email,
-            key,
           });
           return { token };
         }

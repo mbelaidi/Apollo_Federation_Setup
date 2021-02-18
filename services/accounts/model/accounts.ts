@@ -10,7 +10,9 @@ export interface IUser extends Document {
   address: string;
   city: string;
   country: string;
-  secretToken: string;
+  secretToken: {
+    resetPasswordToken: string;
+  };
   isActive: boolean;
   createdAt: string;
 }
@@ -25,7 +27,9 @@ const UserSchema: Schema = new Schema({
   address: { type: String, lowercase: true, trim: true },
   city: { type: String, lowercase: true, trim: true, required: true },
   country: { type: String, lowercase: true, trim: true },
-  secretToken: String,
+  secretToken: {
+    resetPasswordToken: String,
+  },
   isActive: Boolean,
   createdAt: { type: Date, default: Date.now },
 });

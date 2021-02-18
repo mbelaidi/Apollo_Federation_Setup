@@ -10,6 +10,15 @@ export type CreateUserTypes = {
   country: string;
   phone: string;
 };
+export type ChangepassTypes = {
+  user: IUser;
+  password: string;
+};
+export type StoreTokenTypes = {
+  user: IUser;
+  token: string;
+};
+
 export type UpdateUserTypes = {
   user: IUser;
   firstName: string;
@@ -18,8 +27,4 @@ export type UpdateUserTypes = {
   city: string;
   country: string;
   phone: string;
-};
-export type ChangepassTypes = {
-  user: IUser;
-  password: any;
 };

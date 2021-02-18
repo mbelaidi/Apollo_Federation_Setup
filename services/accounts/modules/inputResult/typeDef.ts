@@ -28,4 +28,20 @@ export const typeDefs = gql`
     email: String
     password: String
   }
+  #  Password Erreur
+  union PasswordResult = User | PasswordError
+  type PasswordError {
+    errors: PasswordInputError!
+  }
+  type PasswordInputError {
+    email: String
+    resetPasswordToken: String
+    newPassword: String
+    oldPassword: String
+  }
+  #  Update User Erreur
+  union ProfileResult = User | ProfileError
+  type ProfileError {
+    errors: UserInputError!
+  }
 `;

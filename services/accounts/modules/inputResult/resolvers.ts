@@ -21,4 +21,23 @@ export const resolvers: IResolvers = {
       return null;
     },
   },
+  PasswordResult: {
+    __resolveType(obj: { _id: string; isValid: boolean }) {
+      if (obj._id) {
+        return "User";
+      } else if (!obj.isValid) {
+        return "PasswordError";
+      }
+    },
+  },
+  ProfileResult: {
+    __resolveType(obj: { _id: string; isInvalid: boolean }) {
+      if (obj._id) {
+        return "User";
+      } else if (obj.isInvalid) {
+        return "ProfileError";
+      }
+      return null;
+    },
+  },
 };

@@ -5,5 +5,4 @@ export type LoginInputTypes = {
 
 export type AccessTokenTypes = {
   email: string;
-  key: string;
 };

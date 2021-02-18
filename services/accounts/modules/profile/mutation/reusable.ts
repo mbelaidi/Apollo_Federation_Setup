@@ -1,11 +1,11 @@
-import jwt from "jsonwebtoken";
+// import jwt from "jsonwebtoken";
 
 // Databases
-import User from "../../../model/accounts";
+// import User from "../../../model/accounts";
 
 // TypesValidation
-// import { AccessTokenTypes } from "./types";
-//
+// import { ChangePasswordInputTypes } from "./types";
+
 // export const GenerateAccessToken = async ({ email, key }: AccessTokenTypes) => {
 //   const Find_User = await User.findOne({ email });
 //   if (Find_User) {

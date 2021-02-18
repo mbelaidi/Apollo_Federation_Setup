@@ -8,7 +8,11 @@ export const isEmpty = (value: any) =>
   (typeof value === "string" && value.trim().length === 0);
 
 // TypesValidation
-import { ChangePasswordInputTypes } from "./types";
+import {
+  ChangePasswordInputTypes,
+  requestPasswordResetInputTypes,
+  ResetPassInputTypes,
+} from "./types";
 
 export const validateChangePassInput = ({
   oldPassword,
@@ -32,5 +36,37 @@ export const validateChangePassInput = ({
   if (oldPassword === newPassword) {
     errors.newPassword = "New password should be different";
   }
-  return { errors, isInvalid: !isEmpty(errors) };
+  return { errors, isValid: isEmpty(errors) };
+};
+
+export const validaterequestPasswordResetInput = ({
+  email,
+}: requestPasswordResetInputTypes) => {
+  let errors = {} as requestPasswordResetInputTypes;
+  if (!validator.isEmail(email)) {
+    errors.email = "Email is invalid";
+  }
+  if (validator.isEmpty(email)) {
+    errors.email = "Email field is required";
+  }
+  return { errors, isValid: isEmpty(errors) };
+};
+
+export const validateResetPassInput = ({
+  resetPasswordToken,
+  newPassword,
+}: ResetPassInputTypes) => {
+  let errors = {} as ResetPassInputTypes;
+  newPassword = !isEmpty(newPassword) ? newPassword : "";
+  resetPasswordToken = !isEmpty(resetPasswordToken) ? resetPasswordToken : "";
+  if (validator.isEmpty(resetPasswordToken)) {
+    errors.newPassword = "resetPasswordToken field is required";
+  }
+  if (!validator.isLength(newPassword, { min: 6, max: 30 })) {
+    errors.newPassword = "New Password must be at least 6 characters";
+  }
+  if (validator.isEmpty(newPassword)) {
+    errors.newPassword = "New Password field is required";
+  }
+  return { errors, isValid: isEmpty(errors) };
 };

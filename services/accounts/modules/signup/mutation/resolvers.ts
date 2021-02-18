@@ -24,7 +24,6 @@ export const resolvers: IResolvers = {
         country,
       });
       if (isInvalid) {
-        console.log(errors);
         return { isInvalid, errors };
       } else {
         const { errors, isInvalid } = await validateExistUser({ email });

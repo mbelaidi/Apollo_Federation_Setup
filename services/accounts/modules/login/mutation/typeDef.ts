@@ -2,12 +2,12 @@ const { gql } = require("apollo-server-express");
 
 export const typeDefs = gql`
   extend type Mutation {
-    requestPasswordReset(email: String!): Boolean!
+    requestPasswordReset(email: String!): PasswordResult!
     resetPassword(
-      email: String!
       resetPasswordToken: String!
       newPassword: String!
-    ): Boolean!
-    changePassword(oldPassword: String!, newPassword: String!): Boolean! @auth
+    ): PasswordResult!
+    changePassword(oldPassword: String!, newPassword: String!): PasswordResult!
+      @auth
   }
 `;
