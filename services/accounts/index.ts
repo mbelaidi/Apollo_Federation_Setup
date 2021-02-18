@@ -1,9 +1,11 @@
 // Express
 import express from "express";
 // Apollo
-import { ApolloServer, gql } from "apollo-server-express";
+import { ApolloServer } from "apollo-server-express";
 import { buildFederatedSchema } from "@apollo/federation";
 import { mergeSchemas } from "graphql-tools";
+import { ApolloServerPluginInlineTraceDisabled } from "apollo-server-core";
+
 // MongoDb Library and Key
 import connect from "./connect";
 const db = require("./config").mongoURI;
@@ -27,6 +29,7 @@ const schema = mergeSchemas({
 const server = new ApolloServer({
   schema,
   context: ({ req, res }) => ({ req, res }),
+  plugins: [ApolloServerPluginInlineTraceDisabled()],
 });
 
 // Apply Express Middleware
